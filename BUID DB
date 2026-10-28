@@ -1,0 +1,193 @@
+// Program 7: Built-in Functions
+
+use e_shopping
+
+// Step 1: Insert student values
+db.s_mark.insertMany([
+    {
+        _id: 1,
+        sname: "Arun",
+        java: 76,
+        cn: 73,
+        os: 98
+    },
+    {
+        _id: 2,
+        sname: "banu",
+        java: 67,
+        cn: 56,
+        os: 76
+    },
+    {
+        _id: 3,
+        sname: "chitra",
+        java: 89,
+        cn: 67,
+        os: 54
+    },
+    {
+        _id: 4,
+        sname: "dharshan",
+        java: 73,
+        cn: 45,
+        os: 69
+    }
+])
+
+// Step 2: Calculate total marks using $sum
+db.s_mark.aggregate([
+    {
+        $addFields: {
+            totalmark: {
+                $sum: ["$java", "$cn", "$os"]
+            }
+        }
+    }
+])
+
+// Step 3: Calculate total and percentage
+db.s_mark.aggregate([
+    {
+        $addFields: {
+            totalmark: {
+                $add: ["$java", "$cn", "$os"]
+            },
+            percentage: {
+                $multiply: [
+                    {
+                        $divide: [
+                            {$add: ["$java", "$cn", "$os"]},
+                            300
+                        ]
+                    },
+                    100
+                ]
+            }
+        }
+    }
+])
+
+// Step 4: Update education status
+db.s_mark.updateOne(
+    {_id: 1},
+    {$set: {edu_status: "regular"}}
+)
+
+db.s_mark.updateOne(
+    {_id: 2},
+    {$set: {edu_status: "intern"}}
+)
+
+db.s_mark.updateOne(
+    {_id: 3},
+    {$set: {edu_status: "regular"}}
+)
+
+db.s_mark.updateOne(
+    {_id: 4},
+    {$set: {edu_status: "intern"}}
+)
+
+// Step 5: Display all documents
+db.s_mark.find()
+
+// Step 6: Find regular students using $match
+db.s_mark.aggregate([
+    {
+        $match: {
+            edu_status: "regular"
+        }
+    }
+])
+
+// Step 7: Find interns with OS marks >= 70
+db.s_mark.aggregate([
+    {
+        $match: {
+            edu_status: "intern",
+            os: {$gte: 70}
+        }
+    }
+])
+
+// Step 8: Find interns using find()
+db.s_mark.find({
+    edu_status: "intern"
+})
+
+// Step 9: Group by education status
+db.s_mark.aggregate([
+    {
+        $group: {
+            _id: "$edu_status",
+            avg_java: {$avg: "$java"},
+            avg_cn: {$avg: "$cn"},
+            avg_os: {$avg: "$os"},
+            count: {$sum: 1}
+        }
+    }
+])
+
+// Step 10: Count regular students
+db.s_mark.aggregate([
+    {
+        $match: {
+            edu_status: "regular"
+        }
+    },
+    {
+        $count: "totalregularstudents"
+    }
+])
+
+// Count intern students
+db.s_mark.aggregate([
+    {
+        $match: {
+            edu_status: "intern"
+        }
+    },
+    {
+        $count: "Total_Intern_Students"
+    }
+])
+
+// Step 11: Project selected fields
+db.product.aggregate([
+    {
+        $project: {
+            _id: 0,
+            name: 1,
+            category: 1,
+            stock: 1
+        }
+    },
+    {
+        $limit: 2
+    }
+])
+
+// Exclude fields
+db.student.aggregate([
+    {
+        $project: {
+            _id: 0,
+            age: 0
+        }
+    }
+])
+
+// Add a new field using $project
+db.student.aggregate([
+    {
+        $project: {
+            fullName: {
+                $concat: [
+                    "$firstname",
+                    " ",
+                    "$lastname"
+                ]
+            }
+        }
+    }
+])
