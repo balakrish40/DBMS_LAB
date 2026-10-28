@@ -1,0 +1,37 @@
+// Program 9: Find Student Documents
+
+use e_shopping
+
+// Find users older than 12 years
+db.student.find({
+    age: {$gt: 12}
+})
+
+// Find users with the same first name
+db.student.aggregate([
+    {
+        $group: {
+            _id: "$firstname",
+            count: {$sum: 1},
+            users: {$push: "$$ROOT"}
+        }
+    },
+    {
+        $match: {
+            count: {$gt: 1}
+        }
+    }
+])
+
+// Find a user by email
+db.student.findOne({
+    email: {
+        $regex: "@gmail\\.com$",
+        $options: "i"
+    }
+})
+
+// Find a document by ID
+db.student.findOne({
+    _id: 2
+})
