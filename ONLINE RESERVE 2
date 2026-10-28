@@ -1,0 +1,49 @@
+-- Program 2: Online Reservation System
+-- Table 1: Customer
+CREATE TABLE customer (
+    c_id INT PRIMARY KEY,
+    c_name VARCHAR(10),
+    email VARCHAR(25),
+    phonenumber VARCHAR(10)
+);
+
+INSERT INTO customer VALUES (1071, 'sethu', 'sethu@gmail.com', '7634529800');
+INSERT INTO customer VALUES
+(1072, 'mani', 'mani@gmail.com', '9843978876'),
+(1073, 'jancy', 'jancy15@gmail.com', '9342156567');
+SELECT * FROM customer;
+DESC customer;
+
+-- Table 2: Vehicle
+CREATE TABLE vehicle (
+    vid INT PRIMARY KEY,
+    v_type ENUM('car', 'van', 'bus'),
+    capacity INT
+);
+
+DESC vehicle;
+INSERT INTO vehicle VALUES (1001, 'car', 4);
+INSERT INTO vehicle VALUES (1200, 'van', 10);
+INSERT INTO vehicle VALUES (1201, 'bus', 52);
+-- Invalid ENUM value shown in the record (expected error)
+INSERT INTO vehicle VALUES (1201, 'bike', 1);
+SELECT * FROM vehicle;
+
+-- Table 3: Reservation
+CREATE TABLE reserve (
+    r_id INT PRIMARY KEY,
+    c_id INT,
+    vid INT,
+    start_datetime DATETIME CHECK (start_datetime >= '2025-10-25'),
+    end_datetime DATETIME,
+    place VARCHAR(15),
+    FOREIGN KEY (c_id) REFERENCES customer(c_id),
+    FOREIGN KEY (vid) REFERENCES vehicle(vid)
+);
+
+DESC reserve;
+INSERT INTO reserve VALUES (1, 1071, 1200, '2025-10-26 06:00:00', '2025-10-26 09:00:00', 'salem');
+INSERT INTO reserve VALUES (2, 1073, 1201, '2025-10-25 10:30:00', '2025-10-27 06:00:00', 'delhi');
+-- This row violates the CHECK constraint because the start date is before 2025-10-25.
+INSERT INTO reserve VALUES (3, 1072, 1200, '2025-10-20 10:00:00', '2025-10-25 08:00:00', 'madurai');
+SELECT * FROM reserve;
