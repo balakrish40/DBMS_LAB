@@ -1,0 +1,299 @@
+### Program 1: Banking System (MySQL)
+
+Aim: To create banking tables and demonstrate key constraints and JOIN operations in MySQL.
+
+Algorithm:
+
+* Start the MySQL server and open the MySQL client.
+
+* Create a bank table to store customer details.
+
+* Define the account number as the primary key.
+
+* Apply unique constraints to avoid duplicate values.
+
+* Insert customer details into the bank table.
+
+* Create a loan details table with the required fields.
+
+* Define a foreign key to connect both tables.
+
+* Insert loan details for the customers.
+
+* Join both tables to display banking and loan information.
+
+* Display the results and stop the program.
+
+
+
+
+
+### Program 2: Online Reservation System (MySQL)
+
+Aim: To create customer, vehicle, and reservation tables using MySQL.
+
+Algorithm:
+
+* Start the MySQL server and open the MySQL client.
+
+* Create a Customer table to store customer information.
+
+* Define `c_id` as the primary key.
+
+* Create a Vehicle table to store vehicle details.
+
+* Insert customer and vehicle information.
+
+* Create a Reserve table for reservation details.
+
+* Define primary and foreign keys for the Reserve table.
+
+* Apply a CHECK constraint to validate reservation dates.
+
+* Insert reservation details and display the records.
+
+* Verify the results and stop the program.
+
+
+
+
+
+
+### Program 3: Personal Information (MySQL)
+
+Aim: To store personal information and retrieve records using LIKE operators in MySQL.
+
+Algorithm:
+
+* Start the MySQL server and open the MySQL client.
+
+* Create a table to store personal information.
+
+* Define username, email ID, and university fields.
+
+* Apply a UNIQUE constraint to the email ID.
+
+* Insert personal information into the table.
+
+* Display all records using SELECT.
+
+* Use LIKE to search for specific email patterns.
+
+* Search usernames using the LIKE operator.
+
+* Use NOT LIKE to exclude matching records.
+
+* Display the results and stop the program.
+
+
+
+
+
+
+### Program 4: Student Mark Processing System (MySQL)
+
+Aim: To calculate student totals and percentages and retrieve records using MySQL queries.
+
+Algorithm:
+
+* Start the MySQL server and open the MySQL client.
+
+* Create a student table with subject mark fields.
+
+* Define the required student information fields.
+
+* Insert student details and subject marks.
+
+* Calculate total marks by adding subject marks.
+
+* Calculate the percentage using total marks.
+
+* Display student details with total and percentage.
+
+* Use BETWEEN to retrieve marks within a range.
+
+* Apply AND and OR operators to filter records.
+
+* Display the results and stop the program.
+
+
+
+
+
+### Program 5: E-Commerce Product Catalog (MongoDB)
+
+Aim: To create a product catalog and insert product details using MongoDB.
+
+Algorithm:
+
+* Open MongoDB Shell.
+
+* Select the `e_commerce` database.
+
+* Create a collection named `product`.
+
+* Insert multiple product documents.
+
+* Store product names and categories.
+
+* Add price and stock details.
+
+* Display the available collections.
+
+* Retrieve products using `find()`.
+
+* Verify the inserted product details.
+
+* Stop the program.
+
+
+
+
+
+### Program 6: CRUD Operations (MongoDB)
+
+Aim: To perform Create, Read, Update, and Delete operations using MongoDB.
+
+Algorithm:
+
+* Open MongoDB Shell and select the `e_shopping` database.
+
+* Create the `collegeshop` collection.
+
+* Insert one document using `insertOne()`.
+
+* Insert multiple documents using `insertMany()`.
+
+* Retrieve all documents using `find()`.
+
+* Retrieve one document using `findOne()`.
+
+* Update documents using `updateOne()` and `updateMany()`.
+
+* Replace a document using `replaceOne()`.
+
+* Delete documents using `deleteOne()` and `deleteMany()`.
+
+* Display the final records and stop the program.
+
+
+
+
+
+### Program 7: Built-in Functions (MongoDB)
+
+Aim: To perform built-in and aggregation functions using MongoDB.
+
+Algorithm:
+
+* Open MongoDB Shell and select the `e_shopping` database.
+
+* Insert student marks into the `s_mark` collection.
+
+* Calculate total marks using `$add`.
+
+* Calculate percentage using `$multiply` and `$divide`.
+
+* Add the `edu_status` field to student documents.
+
+* Filter records using `$match`.
+
+* Group records using `$group`.
+
+* Calculate averages and totals using `$avg` and `$sum`.
+
+* Use `$count`, `$project`, and `$limit` to process and display records.
+
+* Display the results and stop the program.
+
+
+
+
+### Program 8: Sorting, Filtering and Indexing (MongoDB)
+
+Aim: To filter and sort product documents and create indexes using MongoDB.
+
+Algorithm:
+
+* Open MongoDB Shell and select the `e_shopping` database.
+
+* Insert product details into the `product` collection.
+
+* Filter products based on category.
+
+* Filter products based on price.
+
+* Sort products by price in ascending order.
+
+* Filter furniture products.
+
+* Sort furniture products by stock in descending order.
+
+* Display existing indexes.
+
+* Create a compound index on selected fields.
+
+* Verify the index and display the results.
+
+
+
+
+
+
+### Program 9: Create Collection and Find Documents (MongoDB)
+
+Aim: To create a collection and retrieve documents using different conditions in MongoDB.
+
+Algorithm:
+
+* Open MongoDB Shell and select the database.
+
+* Create or use a collection containing user details.
+
+* Insert user information into the collection.
+
+* Find a document using its ID.
+
+* Find a user using the email field.
+
+* Retrieve users with the same first name.
+
+* Group users based on their first name.
+
+* Count the documents in each group.
+
+* Find users whose age is greater than 12.
+
+* Display the results and stop the program.
+
+
+
+
+
+### Program 10: Stock Exchange (MongoDB)
+
+Aim: To import stock exchange data and filter stock records using MongoDB.
+
+Algorithm:
+
+* Open MongoDB Compass.
+
+* Create or select the `sample` database.
+
+* Create a collection named `stock`.
+
+* Select the Import Data option.
+
+* Choose the `stock_data.csv` file.
+
+* Import the CSV data into the collection.
+
+* Verify the imported stock records.
+
+* Find stocks with profit greater than `0.5`.
+
+* Find stocks with negative growth.
+
+* Display the results and stop the program.
+
+Nanba, idha direct-ah copy panni GitHub-la ovvoru program-oda `README.md` file-la paste pannalaam.
