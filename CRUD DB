@@ -1,0 +1,95 @@
+// Program 6: CRUD Operations
+
+use e_shopping
+
+// Step 1: Create collection
+db.createCollection("collegeshop")
+
+// Step 2: Insert one document
+db.collegeshop.insertOne({
+    item: "notebook",
+    qty: 50
+})
+
+// Insert many documents
+db.collegeshop.insertMany([
+    {item: "ballpointpen", qty: 100},
+    {item: "inkpen", qty: 60}
+])
+
+// Step 3: Read all documents
+db.collegeshop.find()
+
+// Read one document
+db.collegeshop.findOne({
+    item: "ballpointpen"
+})
+
+// Step 4: Find qty greater than 30 and less than 100
+db.collegeshop.find({
+    qty: {$gt: 30, $lt: 100}
+})
+
+// Find qty greater than or equal to 60
+// and less than or equal to 100
+db.collegeshop.find({
+    qty: {$gte: 60, $lte: 100}
+})
+
+// Step 5: Update one document
+db.collegeshop.updateOne(
+    {item: "notebook"},
+    {$set: {category: "paperstuff"}}
+)
+
+// Update other documents
+db.collegeshop.updateOne(
+    {item: "ballpointpen"},
+    {$set: {category: "writingstuff"}}
+)
+
+db.collegeshop.updateOne(
+    {item: "inkpen"},
+    {$set: {category: "writingstuff"}}
+)
+
+// Display updated documents
+db.collegeshop.find()
+
+// Step 6: Update many documents
+db.collegeshop.updateMany(
+    {category: "writingstuff"},
+    {$set: {status: "available"}}
+)
+
+// Step 7: Replace one document
+db.collegeshop.replaceOne(
+    {item: "inkpen"},
+    {
+        item: "blueinkpen",
+        qty: 70,
+        category: "writingstuff",
+        status: "available"
+    }
+)
+
+// Insert another document
+db.collegeshop.insertOne({
+    item: "colourbox",
+    qty: 55,
+    category: "writingstuff",
+    status: "available"
+})
+
+// Step 8: Delete one document
+db.collegeshop.deleteOne({
+    item: "colourbox"
+})
+
+// Step 9: Delete many documents
+db.collegeshop.deleteMany({
+    category: "writingstuff"
+})
+
+// Display final documents
+db.collegeshop.find()
