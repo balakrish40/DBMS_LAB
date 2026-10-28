@@ -1,0 +1,69 @@
+-- Program 3: Personal Information
+CREATE TABLE personal_data (
+    username VARCHAR(10),
+    emailid VARCHAR(25) UNIQUE,
+    UG_University VARCHAR(25)
+);
+
+INSERT INTO personal_data VALUES
+('sumathi', 'sumathi15@gmail.com', 'bharathiyar'),
+('ravi', 'ravi23@gmail.com', 'bharathidasan'),
+('keerthi', 'keerthi030@gmail.com', 'bharathiar');
+INSERT INTO personal_data VALUES ('sumathi', 'suma2104@gmail.com', 'periyar');
+INSERT INTO personal_data VALUES ('kumar', 'kumar101@gmail.com', 'bharathiar');
+SELECT * FROM personal_data;
+
+-- LIKE operator examples
+SELECT * FROM personal_data WHERE emailid LIKE '%@gmail.com%';
+SELECT * FROM personal_data WHERE username LIKE '_a%';
+SELECT * FROM personal_data WHERE username LIKE '%a_';
+SELECT * FROM personal_data WHERE UG_University LIKE '%a_';
+SELECT * FROM personal_data WHERE UG_University LIKE '%ar';
+SELECT * FROM personal_data WHERE UG_University NOT LIKE '_h%';
+
+-- USER table: table definition supplied so this script can run independently.
+CREATE TABLE user (
+    Iduser INT PRIMARY KEY,
+    username VARCHAR(20),
+    place VARCHAR(20),
+    invested INT
+);
+INSERT INTO user VALUES
+(1001, 'anu', 'cbe', NULL),
+(1002, 'priya', 'ooty', 10000),
+(1003, 'monika', 'cbe', 10000),
+(1005, 'kiru', 'ooty', 10000);
+
+SELECT * FROM user;
+SELECT COUNT(*) FROM user;
+SELECT SUM(invested) FROM user;
+SELECT AVG(invested) FROM user;
+UPDATE user SET invested = 5000 WHERE Iduser = 1003;
+SELECT * FROM user;
+SELECT place, AVG(invested) FROM user GROUP BY place;
+SELECT place, MIN(invested) FROM user GROUP BY place;
+SELECT place, SUM(invested) FROM user GROUP BY place;
+
+-- ORDER BY and LIMIT example shown in the record.
+-- Table definition/data for personalinfo were not shown on these pages; this query matches the record.
+SELECT * FROM personalinfo ORDER BY studentname ASC;
+SELECT * FROM personalinfo ORDER BY studentname ASC LIMIT 1;
+SELECT * FROM personalinfo ORDER BY studentname DESC LIMIT 1;
+
+-- EMP table and HAVING clause
+CREATE TABLE emp (
+    eid INT PRIMARY KEY,
+    ename VARCHAR(20),
+    age INT,
+    edu VARCHAR(10)
+);
+INSERT INTO emp VALUES
+(1, 'sindhu', 25, 'mca'),
+(2, 'kavi', 26, 'mca'),
+(3, 'rithu', 25, 'mca'),
+(4, 'raju', 26, 'mca'),
+(5, 'ganesh', 25, 'mca'),
+(6, 'priya', 26, 'mca');
+SELECT * FROM emp;
+SELECT edu, COUNT(eid) AS num_employees FROM emp GROUP BY edu HAVING COUNT(eid) > 3;
+SELECT age, COUNT(eid) AS num_employees FROM emp GROUP BY age HAVING COUNT(eid) >= 3;
