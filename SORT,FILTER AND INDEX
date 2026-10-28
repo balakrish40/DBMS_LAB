@@ -1,0 +1,93 @@
+// Program 8: Sorting, Filtering and Indexing
+
+use e_shopping
+
+// Step 1: Insert product values
+db.product.insertMany([
+    {
+        name: "Laptop",
+        category: "Electronics",
+        price: 1200,
+        stock: 50
+    },
+    {
+        name: "Mouse",
+        category: "Electronics",
+        price: 25,
+        stock: 200
+    },
+    {
+        name: "Keyboard",
+        category: "Electronics",
+        price: 75,
+        stock: 150
+    },
+    {
+        name: "Desk Chair",
+        category: "Furniture",
+        price: 300,
+        stock: 30
+    },
+    {
+        name: "Coffee Table",
+        category: "Furniture",
+        price: 150,
+        stock: 40
+    },
+    {
+        name: "Bookcase",
+        category: "Furniture",
+        price: 200,
+        stock: 20
+    },
+    {
+        name: "T-Shirt",
+        category: "Apparel",
+        price: 20,
+        stock: 500
+    },
+    {
+        name: "Jeans",
+        category: "Apparel",
+        price: 60,
+        stock: 100
+    }
+])
+
+// Step 2: Filter by category and price
+db.product.find({
+    category: "Electronics",
+    price: {$lt: 100}
+})
+
+// Step 3: Sort by price ascending
+db.product.find().sort({
+    price: 1
+})
+
+// Step 4: Furniture products sorted by stock descending
+db.product.find({
+    category: "Furniture"
+}).sort({
+    stock: -1
+})
+
+// Step 5: Filter and sort by category, price and name
+db.product.find({
+    category: "Electronics",
+    price: {$lt: 50}
+}).sort({
+    name: 1
+})
+
+// Step 6: View indexes before creating index
+db.product.getIndexes()
+
+// Step 7: Create compound index
+db.product.createIndex({
+    category: 1,
+    price: 1
+})
+
+// Display indexes after creating index
+db.product.getIndexes()
