@@ -1,0 +1,45 @@
+-- Program 1: Banking System
+CREATE TABLE bank (
+    accno INT PRIMARY KEY,
+    cust_name VARCHAR(15),
+    email VARCHAR(100) UNIQUE,
+    phonenumber VARCHAR(15) UNIQUE
+);
+
+DESC bank;
+
+INSERT INTO bank VALUES (17071, 'velan', 'velan01@gmail.com', '9788934500');
+INSERT INTO bank VALUES
+(17072, 'anu', 'anupriya@gmail.com', '6734517000'),
+(17073, 'shanthi', 'sanu21@gmail.com', '7890012345');
+SELECT * FROM bank;
+
+-- Unique key constraint violation (expected error: duplicate email)
+INSERT INTO bank VALUES (17074, 'arun', 'anupriya@gmail.com', '6734517000');
+
+-- Insert NULL values in unique fields
+INSERT INTO bank VALUES (17074, 'arun', NULL, '9894238341');
+INSERT INTO bank VALUES (17075, 'padma', 'padma@gmail.com', NULL);
+INSERT INTO bank VALUES (17076, 'preethi', NULL, NULL);
+SELECT * FROM bank;
+
+-- Foreign key creation
+CREATE TABLE loandetails (
+    loanid INT PRIMARY KEY,
+    accno INT,
+    loanamt INT,
+    FOREIGN KEY (accno) REFERENCES bank(accno)
+);
+
+DESC loandetails;
+INSERT INTO loandetails VALUES (101, 17071, 50000);
+INSERT INTO loandetails VALUES (102, 17074, 60000);
+-- The following row is shown as a foreign-key error in the record because accno 17077 does not exist.
+INSERT INTO loandetails VALUES (103, 17077, 45000);
+SELECT * FROM loandetails;
+
+-- Join two tables
+SELECT b.cust_name, l.loanid, l.loanamt
+FROM bank b INNER JOIN loandetails l ON b.accno = l.accno;
+
+
