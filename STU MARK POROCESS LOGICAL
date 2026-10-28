@@ -1,0 +1,33 @@
+-- Program 4: Student Mark Processing System
+CREATE TABLE studentdata (
+    rollno VARCHAR(8) PRIMARY KEY,
+    studentname VARCHAR(15),
+    java INT,
+    adbms INT,
+    cn INT,
+    os INT,
+    d_net INT,
+    total INT,
+    percentage INT
+);
+
+INSERT INTO studentdata (rollno, studentname, java, adbms, cn, os, d_net)
+VALUES ('25mca01', 'arun', 50, 57, 67, 78, 50);
+INSERT INTO studentdata (rollno, studentname, java, adbms, cn, os, d_net)
+VALUES
+('25mca02', 'banu', 65, 57, 69, 60, 48),
+('25mca03', 'chitra', 78, 67, 56, 46, 98);
+SELECT * FROM studentdata;
+
+-- Update total and percentage columns
+UPDATE studentdata SET total = java + adbms + cn + os + d_net;
+UPDATE studentdata SET percentage = total / 5;
+SELECT * FROM studentdata;
+
+-- Logical operators using WHERE clause
+SELECT rollno, java FROM studentdata WHERE java BETWEEN 45 AND 65;
+SELECT rollno, java, d_net FROM studentdata WHERE java > 45 AND d_net > 45;
+SELECT rollno, cn, os FROM studentdata WHERE cn >= 60 OR os >= 60;
+SELECT rollno, studentname FROM studentdata WHERE total NOT BETWEEN 300 AND 350;
+SELECT rollno, studentname FROM studentdata WHERE total <> 302;
+SELECT rollno, studentname, total FROM studentdata WHERE total = 299;
